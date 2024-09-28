@@ -1,19 +1,31 @@
 package org.example.stage1.hero;
 
 import org.example.stage1.enemy.Enemy;
+
+import java.util.List;
 import java.util.Random;
 
 public class Warrior extends Hero {
 
     private int health = 100;
 
+
     @Override
     public int getHealth() {
         return health;
     }
 
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public Warrior(String name) {
         super(name);
+    }
+    public Warrior(String name, int health) {
+        super(name);
+        this.setHealth(health);
     }
 
     @Override
@@ -35,6 +47,8 @@ public class Warrior extends Hero {
     }
 
 
+
+
     @Override
     public void attackEnemy(Enemy enemy) {
         Random random = new Random();
@@ -49,11 +63,17 @@ public class Warrior extends Hero {
         }else System.out.printf("%s убит! не может атаковать", getName());
     }
 
+//    @Override
+//    public void attackManyEnemy(List<Enemy> enemyList) {
+//
+//    }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+
+//    @Override
+//    public String toString() {
+//        return super.toString();
+//    }
+
 
     @Override
     public boolean isAlive() {

@@ -42,7 +42,7 @@ public class Enemy implements Mortal {
                 hero.takeDamage(damage);
                 hero.attackEnemy(this);
             } else System.out.println(getName() + " не может атаковать убитого врага");
-        }else System.out.printf("%s убит! не может атаковать\n", getName());
+        }else System.out.printf("%s убит! не может атаковать!\n", getName());
     }
 
 
@@ -52,7 +52,7 @@ public class Enemy implements Mortal {
             if (health > 0) {
                 System.out.printf("У %s осталось %d здоровья\n", getName(), getHealth());
             } else {
-                System.out.printf("%s УБИТ\n", getName());
+                System.out.printf("%s УБИТ!\n", getName());
             }
         } else
             System.out.println("Ошибка! что-то пошло не так");

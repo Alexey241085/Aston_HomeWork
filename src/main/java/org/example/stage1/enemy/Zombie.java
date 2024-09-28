@@ -1,9 +1,21 @@
 package org.example.stage1.enemy;
 
-public class Zombie extends Enemy{
+public class Zombie extends Enemy {
 
     private int health = 100;
-    private int count = 1;
+    int count = 1;
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    boolean secondLife = true;
 
     public Zombie(String name) {
         super(name);
@@ -13,21 +25,39 @@ public class Zombie extends Enemy{
         super(name, health);
     }
 
-//    @Override
-//    public void takeDamage(int damage) {
-//
-//        if (isAlive()) {
-//            health = health - damage;
-//            if (health > 0) {
-//                System.out.printf("У %s осталось %d здоровья\n", getName(), getHealth());
-//            } else {
-//                if (count == 1){
-//                    System.out.println("%s умер, но воскрес!");
-//                    health = 100;
-//                    count = count - 1;
-//                } else System.out.printf("%s УБИТ\n", getName());
-//            }
-//        } else
-//            System.out.println("Ошибка! что-то пошло не так");
-//    }
+    /**
+     * метод приема урона но воскрешает один раз
+     * @param damage уровень урона
+     */
+    @Override
+    public void takeDamage(int damage) {
+        if (isAlive()) {
+            health = getHealth() - damage;
+            if (health > 0) {
+                System.out.printf("У %s осталось %d здоровья\n", getName(), getHealth());
+            } else {
+                if (count < 2) {
+                    System.out.printf("%s УБИТ!, нов ВОСКРЕСС\n", getName());
+                    System.out.println(isAlive());
+                    setHealth(100);
+                    System.out.printf("У %s осталось %d здоровья\n", getName(), getHealth());
+                    count++;
+                    System.out.println(isAlive());
+                } else {
+                    System.out.printf("%s УБИТ!,\n", getName());
+                    secondLife = false;
+                }
+            }
+
+        } else
+            System.out.println("Ошибка! что-то пошло не так");
+    }
+
+    @Override
+    public boolean isAlive() {
+        if (getHealth() > 0) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -2,11 +2,17 @@ package org.example.stage1.hero;
 
 import org.example.stage1.enemy.Enemy;
 
+import java.util.List;
 import java.util.Random;
 
 public class Archer extends Hero {
 
     private int health = 100;
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     @Override
     public int getHealth() {
@@ -55,11 +61,18 @@ public class Archer extends Hero {
 
     }
 
+//    @Override
+//    public void attackManyEnemy(List<Enemy> enemyList) {
+//
+//    }
+
 
     @Override
     public String toString() {
         return super.toString();
     }
+
+
 
     @Override
     public boolean isAlive() {
